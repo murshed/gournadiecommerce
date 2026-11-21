@@ -1,0 +1,99 @@
+# @dashcommerce/starter
+
+## 0.3.9
+
+### Patch Changes
+
+- Updated dependencies [[`32f4f57`](https://github.com/emdashCommerce/dashcommerce/commit/32f4f577535c7216b9e173066ee22058a671bea4)]:
+  - @dashcommerce/core@0.3.4
+
+## 0.3.8
+
+### Patch Changes
+
+- Updated dependencies [[`37b9afc`](https://github.com/emdashCommerce/dashcommerce/commit/37b9afcba62db4d34fb40660c954721d13fc7166)]:
+  - @dashcommerce/core@0.3.3
+
+## 0.3.7
+
+### Patch Changes
+
+- [#53](https://github.com/emdashCommerce/dashcommerce/pull/53) [`ff67d95`](https://github.com/emdashCommerce/dashcommerce/commit/ff67d95ea475abd35cfb2d96f47adfddd92fcbb0) Thanks [@cavewebs](https://github.com/cavewebs)! - Require EmDash 1.3.1 (`emdash` and `@emdash-cms/cloudflare` ^1.3.1) and document the commented `worker_loaders` binding that sandboxed plugins such as DashCommerce Lite need on Cloudflare (Workers Paid).
+
+## 0.3.6
+
+### Patch Changes
+
+- Updated dependencies [[`cbd16cb`](https://github.com/emdashCommerce/dashcommerce/commit/cbd16cb3e48949340a49d14da2c65abc250fa975)]:
+  - @dashcommerce/core@0.3.2
+
+## 0.3.5
+
+### Patch Changes
+
+- Updated dependencies [[`7a156cb`](https://github.com/emdashCommerce/dashcommerce/commit/7a156cb3f7729bb85f676a9653ea6dc350f08e4f), [`4b1f2a1`](https://github.com/emdashCommerce/dashcommerce/commit/4b1f2a1fe967df89cdd90259ff03dd92d903bdfc), [`12fd4e5`](https://github.com/emdashCommerce/dashcommerce/commit/12fd4e5d4f03f9329ec4d6dc46b709f738d235aa)]:
+  - @dashcommerce/core@0.3.1
+
+## 0.3.4
+
+### Patch Changes
+
+- Updated dependencies [[`67c3c34`](https://github.com/emdashCommerce/dashcommerce/commit/67c3c3443d1fdb8890359137030cce17b5bebcfa)]:
+  - @dashcommerce/core@0.3.0
+
+## 0.3.3
+
+### Patch Changes
+
+- Updated dependencies [[`2b462ee`](https://github.com/emdashCommerce/dashcommerce/commit/2b462ee05cd09a1a94968fbd4589795aded8a8e9)]:
+  - @dashcommerce/core@0.2.2
+
+## 0.3.2
+
+### Patch Changes
+
+- Updated dependencies [[`55ca9fa`](https://github.com/emdashCommerce/dashcommerce/commit/55ca9fa5408619f717c92ff020e59ce04a49a4cd), [`bcdad21`](https://github.com/emdashCommerce/dashcommerce/commit/bcdad21b6519442c5f62bdf6b5382179f69d5570)]:
+  - @dashcommerce/core@0.2.1
+
+## 0.3.1
+
+### Patch Changes
+
+- [#16](https://github.com/emdashCommerce/dashcommerce/pull/16) [`b865dd7`](https://github.com/emdashCommerce/dashcommerce/commit/b865dd78bfb2b4d6805c7aa9526d85819da7a5ee) Thanks [@cavewebs](https://github.com/cavewebs)! - Support EmDash 0.28.
+
+  Migrate from emdash 0.6 to 0.28.1. The plugin now builds its native
+  `ResolvedPlugin` via `definePlugin` with single-argument `RouteContext`
+  handlers (emdash's native route shape) instead of `adaptSandboxEntry`, whose
+  0.28 form flattens the request and would break the Stripe webhook's raw-body
+  signature check. Capability names are updated to the current vocabulary
+  (`network:request`, `content:read`, `content:write`, `media:read`,
+  `users:read`), and the emdash peer range is now `>=0.28.0 <0.29.0`.
+
+  The bundled emdash patch is re-authored for 0.28.1: plugin route handlers may
+  still return a raw `Response` (cookies, redirects, webhook 200s), and the raw
+  request body is preserved so `ctx.request.text()` works for Stripe webhook
+  signature verification.
+
+  The starter adds a Cloudflare Worker entry (`src/worker.ts`) plus a Cron
+  Trigger so plugin cron — abandoned-cart recovery, subscription dunning, and
+  stock-lock sweeps — runs on Workers (emdash 0.19+ drives cron from a
+  `scheduled()` handler, not request side effects).
+
+- Updated dependencies [[`ef8360b`](https://github.com/emdashCommerce/dashcommerce/commit/ef8360be32b6f99fd07cc3b0a47cb913c96e724c), [`b865dd7`](https://github.com/emdashCommerce/dashcommerce/commit/b865dd78bfb2b4d6805c7aa9526d85819da7a5ee)]:
+  - @dashcommerce/core@0.2.0
+
+## 0.3.0
+
+### Minor Changes
+
+- [#12](https://github.com/emdashCommerce/dashcommerce/pull/12) [`321e810`](https://github.com/emdashCommerce/dashcommerce/commit/321e810383dc784f9e8f0512dba55a309eae3336) Thanks [@cavewebs](https://github.com/cavewebs)! - Upgrade to emdash 0.6.0.
+
+  - `@dashcommerce/core`: widen `emdash` peer range to `>=0.5.0 <0.7.0`. Bump the bundled devDeps (`emdash`, `@emdash-cms/admin`) to `^0.6.0` so the package builds against current types. No public API changes.
+  - `@dashcommerce/starter`: bump `emdash` and `@emdash-cms/cloudflare` to `^0.6.0`. 0.6's [release fix for `syncSearchState` FTS-during-field-creation](https://github.com/emdash-cms/emdash/pull/595) eliminates the partial-DDL issue that was truncating collection schemas on Cloudflare D1 setup and throwing mid-seed on Postgres. Storefront surfaced zero typecheck errors on the upgrade — no porting required.
+
+  Stripe webhook body-clone patch regenerated for 0.6 (`patches/emdash@0.6.0.patch`) since the upstream `request.clone().json()` fix still isn't in place.
+
+### Patch Changes
+
+- Updated dependencies [[`321e810`](https://github.com/emdashCommerce/dashcommerce/commit/321e810383dc784f9e8f0512dba55a309eae3336)]:
+  - @dashcommerce/core@0.1.4
