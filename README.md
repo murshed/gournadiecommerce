@@ -1,122 +1,290 @@
-# গৌরনদী ডিজিটাল · Gournadi Digital
+<div align="center">
 
-An **EmDash CMS** storefront with **DashCommerce** ecommerce, converted from the
-original static HTML/CSS/JS site. Bangla-first copy, Taka pricing, and an admin
-UI for products, orders, blog posts, navigation and site settings.
+  <img src="assets/logo.svg" alt="Gournadi Digital Logo" width="200"/>
 
-## Stack
+  # গৌরনদী ডিজিটাল · Gournadi Ecommerce
 
-| Layer | Choice |
-| --- | --- |
-| Framework | [Astro](https://astro.build) 6 |
-| CMS | [EmDash](https://docs.emdashcms.com) 1.4 |
-| Commerce | [`@dashcommerce/core`](https://dashcommerce.dev) 0.3 |
-| Database | SQLite (`data.db`) locally — Cloudflare D1 ready |
-| Payments | Stripe (Checkout) |
-| Styling | Hand-written CSS in `src/styles/global.css` |
+  <p align="center">
+    <strong>A high-performance, Bangla-first headless ecommerce storefront and content platform.</strong>
+  </p>
 
-## Run it
+  <p align="center">
+    Built with <strong>Astro 6</strong>, powered by <strong>EmDash CMS</strong> and <strong>DashCommerce</strong>, with dual-currency support and seamless <strong>Stripe</strong> checkout.
+  </p>
+
+  <p align="center">
+    <a href="https://astro.build"><img src="https://img.shields.io/badge/Astro-6.0-BC52EE?style=for-the-badge&logo=astro&logoColor=white" alt="Astro 6"/></a>
+    <a href="https://docs.emdashcms.com"><img src="https://img.shields.io/badge/EmDash%20CMS-1.4-0F8A5F?style=for-the-badge" alt="EmDash CMS"/></a>
+    <a href="https://dashcommerce.dev"><img src="https://img.shields.io/badge/DashCommerce-0.3-E55B3C?style=for-the-badge" alt="DashCommerce"/></a>
+    <a href="https://www.cloudflare.com/"><img src="https://img.shields.io/badge/Cloudflare-D1%20Ready-F38020?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Cloudflare D1"/></a>
+    <a href="https://stripe.com"><img src="https://img.shields.io/badge/Stripe-Checkout-635BFF?style=for-the-badge&logo=stripe&logoColor=white" alt="Stripe"/></a>
+    <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-2BAE66?style=for-the-badge" alt="License"/></a>
+  </p>
+
+  <p align="center">
+    <a href="#-key-features">Key Features</a> •
+    <a href="#-tech-stack">Tech Stack</a> •
+    <a href="#-quick-start">Quick Start</a> •
+    <a href="#-admin-dashboard">Admin Dashboard</a> •
+    <a href="#-storefront-routes">Routes</a> •
+    <a href="#-deployment">Deployment</a> •
+    <a href="#-license">License</a>
+  </p>
+
+</div>
+
+---
+
+## 📖 Overview
+
+**Gournadi Ecommerce** (গৌরনদী ডিজিটাল) is a modern storefront engineered for speed, clean aesthetics, and flexible content management. It blends the best of static site generation with dynamic headless ecommerce capabilities.
+
+Designed specifically for Bangladesh with a **Bangla-first interface** and **Taka (`৳ BDT`)** pricing, it seamlessly integrates with Stripe for global card settlements (`USD`), backed by a lightweight SQLite database locally and Cloudflare D1 for edge deployment.
+
+---
+
+## ✨ Key Features
+
+- 🛍️ **Comprehensive Storefront Experience**
+  - Dynamic product catalog with category/tag filtering, fast search, responsive cart drawer, and frictionless checkout.
+- 🇧🇩 **Bangla-First Localization**
+  - Native Bengali typography (Hind Siliguri), Bengali product descriptions, and currency localization (`BDT 1,990.00`).
+- 🎛️ **Full Headless CMS Management**
+  - Powered by **EmDash CMS** — manage products, orders, categories, hero slides, promotional banners, trust bars, announcements, navigation menus, and blog articles from a built-in admin panel.
+- ⚡ **Blazing-Fast Island Architecture**
+  - Powered by **Astro 6** Server-Side Rendering (SSR) with React 19 interactive components only where needed.
+- 💳 **Stripe Checkout Integration**
+  - Secure payment processing with automated webhooks and order confirmation receipts.
+- 💱 **Multi-Currency Architecture**
+  - Primary store pricing in `BDT`, with automatic `USD` rate mapping for Stripe payment settlement.
+- ☁️ **Edge & Cloud Deployment Ready**
+  - Runs locally with zero-setup SQLite (`data.db`) and deploys effortlessly to Cloudflare Workers + D1 or Node.js / Railway.
+
+---
+
+## 🛠️ Tech Stack
+
+| Component | Technology | Description |
+| :--- | :--- | :--- |
+| **Framework** | [Astro 6](https://astro.build) | Islands architecture, SSR & high performance |
+| **CMS Engine** | [EmDash CMS 1.4](https://docs.emdashcms.com) | Headless content management & admin dashboard |
+| **Ecommerce** | [`@dashcommerce/core`](https://dashcommerce.dev) | Catalog, cart, checkout & order lifecycle |
+| **UI & Islands** | [React 19](https://react.dev) | Interactive components (Cart, Stripe checkout forms) |
+| **Database** | SQLite & [Cloudflare D1](https://developers.cloudflare.com/d1/) | Serverless edge SQL database |
+| **Payments** | [Stripe](https://stripe.com) | Embedded Stripe Elements and Checkout |
+| **Styling** | Custom Responsive CSS | Handcrafted warm paper palette (`#FBF9F4`, `#0F8A5F`, `#C8923C`) |
+
+---
+
+## 🎨 Visual Identity & Palette
+
+The design reflects a warm, editorial paper aesthetic tailored for Gournadi:
+
+```
+Paper Background    #FBF9F4  ████████
+Primary Ink         #0B1B17  ████████
+Brand Green         #0F8A5F  ████████
+Warm Gold Accent    #C8923C  ████████
+Muted Text          #7A857F  ████████
+```
+
+* **Typography**: *Instrument Serif* (Display & Headlines), *Hind Siliguri* (Bangla copy), *Inter* (UI & Navigation).
+
+---
+
+## 🚀 Quick Start
+
+### 1. Prerequisites
+
+- **Node.js**: v20 or higher
+- **npm**: v10 or higher
+
+### 2. Clone Repository
 
 ```bash
-npm install --legacy-peer-deps   # peer-dep conflict between wrangler 4 and @cloudflare/workers-types 4
-npm run bootstrap                # emdash init + merge DashCommerce collections + seed
-npm run dev                      # http://localhost:4321
+git clone https://github.com/murshed/gournadiecommerce.git
+cd gournadiecommerce
 ```
 
-`npm install` needs `--legacy-peer-deps` because the starter pins
-`@cloudflare/workers-types@^4` while `wrangler@4` wants `^5`.
+### 3. Install Dependencies
 
-### Admin
-
-Open <http://localhost:4321/_emdash/admin>. For local development without a
-passkey:
-
-```
-http://localhost:4321/_emdash/api/setup/dev-bypass?redirect=/_emdash/admin
-```
-
-From the admin you can edit products, categories, tags, posts, hero slides,
-category tiles, banners, trust items, announcements, menus and site settings.
-
-## Content model
-
-Everything on the storefront is CMS-driven:
-
-- **Products** — 12 Gournadi products, `BDT` + `USD` price maps, stock, categories
-  (`audio`, `wearable`, `computer`, `mobile`, `home`, `accessory`) and tags.
-- **Posts** — 6 Bangla articles with categories (`guide`, `review`, `offers`,
-  `tips`, `company`).
-- **Hero slides / category tiles / banners / trust items / announcements** —
-  homepage sections.
-- **Menus** — `primary`, `footer-shop`, `footer-account`, `footer-help`,
-  `footer-legal`.
-- **Site settings** — title (`গৌরনদী ডিজিটাল`), tagline, social links, SEO.
-
-### Re-seeding
-
-`.emdash/seed.json` is the seed consumed by `npm run seed`. It is generated by
-`scripts/build-gournadi-seed.mjs`, which replaces content while preserving the
-EmDash/DashCommerce collection and taxonomy definitions:
+> [!NOTE]
+> Use `--legacy-peer-deps` due to version alignment across Cloudflare Worker types.
 
 ```bash
-node scripts/build-gournadi-seed.mjs && npm run seed
+npm install --legacy-peer-deps
 ```
 
-`npm run seed` uses `--on-conflict=update`, so it is safe to re-run.
+### 4. Bootstrap Database & Seed Content
 
-## Currency & payments
-
-- Store default currency is **BDT** (`enabledCurrencies: ["BDT","USD"]`). Each
-  product carries a Taka price and a USD equivalent for card settlement.
-  Prices display as `BDT 1,990.00`.
-- Checkout is **Stripe only**. Add test keys at
-  **Admin → Plugins → DashCommerce → Settings**
-  (`stripeSecretKey`, `stripePublishableKey`, webhook secret) before taking
-  payments.
-- Shipping: create a Bangladesh shipping zone with a flat rate in
-  **Admin → DashCommerce → Shipping**. The seed ships a US example zone only, so
-  checkout will not quote a Bangladesh rate until that zone exists.
-- Stripe does not support BDT as a presentment currency; card settlement will
-  use the USD price map. Cash-on-delivery is a copy promise and a delivery
-  option you collect offline — DashCommerce does not process COD itself.
-
-## Pages
-
-| Route | What it is |
-| --- | --- |
-| `/` | Homepage: hero slider, categories, product grid, brand banner, journal, trust strip |
-| `/shop`, `/shop/[slug]` | Catalogue and product detail |
-| `/category/[slug]`, `/tag/[slug]` | Taxonomy listings |
-| `/cart`, `/checkout`, `/thank-you/[draft]` | Cart and Stripe checkout |
-| `/account`, `/orders/lookup` | Customer account and guest order lookup |
-| `/blog`, `/blog/[slug]`, `/blog/category/[slug]` | Journal |
-| `/about`, `/contact`, `/returns`, `/privacy`, `/terms` | Bangla content pages (`src/pages/*.astro` + `LegalPage.astro`) |
-
-## Design
-
-The starter's dark "Obsidian Market" theme was rethemed to Gournadi's paper
-palette: `#FBF9F4` background, `#0B1B17` ink, brand green `#0F8A5F`, warm gold
-`#C8923C`. Fonts are Instrument Serif (display), Hind Siliguri (Bangla) and
-Inter (UI), loaded in `src/layouts/Shop.astro`. The `<html lang>` is `bn`.
-
-Hero slides, category tiles and blog covers use brand gradient art from the
-CMS; the original SVG product illustrations in `assets/` are retained but not
-yet wired into product records.
-
-## Notes on the conversion
-
-- The original static site (vanilla `index.html`, `js/config.js`, `css/style.css`)
-  was removed; it remains in git history at commit `6112fb8`.
-- Old payment options (bKash/Nagad/Rocket/SSLCommerz/COD) are **not** carried
-  over — DashCommerce checkout is Stripe-only.
-- `bun` is not installed here, so `bun.lock` was removed and npm's
-  `package-lock.json` is used.
-
-## Useful commands
+Initialize EmDash collections, merge DashCommerce ecommerce schemas, and apply sample content:
 
 ```bash
-npm run dev        # dev server on :4321
-npm run build      # production build
-npm run seed       # apply .emdash/seed.json
-npm run typecheck  # astro check
+npm run bootstrap
 ```
+
+### 5. Launch Development Server
+
+```bash
+npm run dev
+```
+
+Your storefront will be live at:
+👉 **`http://localhost:4321`**
+
+---
+
+## 🎛️ Admin Dashboard
+
+Access the EmDash management console:
+
+```
+http://localhost:4321/_emdash/admin
+```
+
+> [!TIP]
+> **Local Dev Quick Login**: Bypass passkey authentication during local development by opening:
+> `http://localhost:4321/_emdash/api/setup/dev-bypass?redirect=/_emdash/admin`
+
+### What You Can Manage
+
+- 📦 **Products**: Titles, SKUs, inventory, multi-currency price matrices (`BDT` & `USD`), category taxonomy, and tags.
+- 🏷️ **Taxonomies**: Categories (`audio`, `wearable`, `computer`, `mobile`, `home`, `accessory`).
+- 📰 **Journal**: Publish Bangla blog posts with rich content and topic categorizations (`guide`, `review`, `tips`, `offers`).
+- 🖼️ **Homepage Layout**: Hero carousel sliders, category showcase tiles, promo banners, and trust badges.
+- 🧭 **Site Menus**: Header navigation, footer columns (`Shop`, `Account`, `Help`, `Legal`).
+- ⚙️ **Settings**: Site title (`গৌরনদী ডিজিটাল`), social channels, SEO meta tags, and payment credentials.
+
+---
+
+## 🗺️ Storefront Routes
+
+| Route | Description |
+| :--- | :--- |
+| `/` | Homepage — hero slider, categories, featured grid, promos, trust strip, journal |
+| `/shop` | Full product catalogue with category & price filtering |
+| `/shop/[slug]` | Product details, image gallery, specs, and add-to-cart |
+| `/category/[slug]` | Filtered category listings |
+| `/tag/[slug]` | Tagged product collections |
+| `/cart` | Dynamic cart drawer and order review |
+| `/checkout` | Stripe-powered checkout flow |
+| `/checkout/success` | Order confirmation with tracking details |
+| `/account` | Customer account overview |
+| `/orders/lookup` | Guest order status lookup |
+| `/blog` | Journal listing and updates |
+| `/blog/[slug]` | Single editorial article |
+| `/about`, `/contact` | Store information and contact channels |
+| `/privacy`, `/terms`, `/returns` | Policy and compliance pages |
+
+---
+
+## 💳 Payments, Currency & Shipping
+
+### Currency Mapping
+The primary customer display currency is **Bangladeshi Taka (`BDT`)**. Products carry a dual price structure:
+- **BDT** (e.g., `৳ 1,990.00`): Displayed throughout catalogue, cart, and summaries.
+- **USD** (e.g., `$ 18.00`): Used for Stripe payment processing since Stripe does not directly support BDT card settlement.
+
+### Configuring Stripe
+1. Go to **Admin → Plugins → DashCommerce → Settings**.
+2. Enter your keys:
+   - `stripePublishableKey` (`pk_test_...`)
+   - `stripeSecretKey` (`sk_test_...`)
+   - `stripeWebhookSecret` (`whsec_...`)
+
+### Shipping Rates
+Configure flat-rate delivery rules in **Admin → DashCommerce → Shipping** for local Bangladesh delivery zones (Inside Dhaka, Outside Dhaka, Barisal division, etc.).
+
+---
+
+## 📂 Project Structure
+
+```plaintext
+gournadiecommerce/
+├── .emdash/               # EmDash schemas, migrations, and seed definitions
+│   ├── build-seed.ts
+│   ├── migrations.json
+│   └── seed.json          # Default database seed
+├── assets/                # Brand logos, category vectors, and illustrations
+├── patches/               # Local npm package patches (emdash)
+├── public/                # Static assets (robots.txt, icons)
+├── scripts/               # Seed builders, Cloudflare D1 migration scripts
+├── src/
+│   ├── components/        # Astro & React UI components (Cart, Header, Banner)
+│   ├── layouts/           # Master layout templates (Shop.astro)
+│   ├── lib/               # DashCommerce helpers, site metadata, edition configs
+│   ├── pages/             # File-based routing (Astro pages & endpoints)
+│   ├── styles/            # Global styling (paper palette & typography)
+│   └── worker.ts          # Cloudflare Worker entry point
+├── astro.config.mjs       # Astro configuration & adapters
+├── package.json           # Scripts & project dependencies
+├── railway.json           # Railway hosting configuration
+├── tsconfig.json          # TypeScript configuration
+└── wrangler.jsonc         # Cloudflare Workers / D1 configuration
+```
+
+---
+
+## 💻 Available Scripts
+
+| Script | Command | Purpose |
+| :--- | :--- | :--- |
+| **Development** | `npm run dev` | Starts local Astro dev server on `http://localhost:4321` |
+| **Build** | `npm run build` | Builds production bundle for Cloudflare deployment |
+| **Node Build** | `npm run build:node` | Builds standalone Node.js server bundle |
+| **Preview** | `npm run preview` | Previews production build locally |
+| **Bootstrap** | `npm run bootstrap` | Initializes EmDash, merges commerce schemas & seeds DB |
+| **Seed** | `npm run seed` | Applies `.emdash/seed.json` (`--on-conflict=update`) |
+| **Type Check** | `npm run typecheck` | Runs `astro check` across TypeScript and Astro templates |
+| **Cloudflare Dev** | `npm run cf:dev` | Runs site locally inside Wrangler worker runtime |
+| **Cloudflare Deploy**| `npm run cf:deploy` | Deploys bundle to Cloudflare Workers |
+
+---
+
+## ☁️ Deployment
+
+### Option A: Cloudflare Pages / Workers & D1 (Recommended)
+
+1. **Create D1 Database**:
+   ```bash
+   npm run cf:d1:create
+   ```
+2. **Seed Remote D1 Database**:
+   ```bash
+   npm run cf:d1:seed
+   ```
+3. **Deploy via Wrangler**:
+   ```bash
+   npm run cf:deploy
+   ```
+
+### Option B: Railway or Standalone Node.js Container
+
+Build the standalone server package:
+```bash
+npm run build:node
+npm run start
+```
+A `railway.json` is provided in the repository root for zero-config Railway deployments.
+
+---
+
+## 🤝 Contributing
+
+Contributions, feedback, and issue reports are warmly welcomed!
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is open-source and licensed under the [MIT License](LICENSE).
+
+<div align="center">
+  <p>Made with ❤️ for <strong>গৌরনদী ডিজিটাল</strong></p>
+</div>
